@@ -92,7 +92,7 @@ public class Caesar extends MonoAlphaSubstitution{
 
     }
 
-
+    // STILL NEED TO IMPLEMENT PARAMETER ERROR MESSAGES.
     public static void main(String[] args){
         String type = args[0];
         int key = (Integer.parseInt(args[1]) + 12224);
