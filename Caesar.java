@@ -6,9 +6,16 @@ public class Caesar extends MonoAlphaSubstitution{
     static char[] mapArray = new char[100];
 
     public Caesar(){
-        for(int i = 0; i < 52; i++){
-            mapArray[i] = alphabet[i];
+        String subText = "";
+        for(int i = 0; i <26; i++){
+            subText = subText + alphabet[i];
         }
+        for(int i = 0; i < 26; i++){
+            subText = subText + upperCase[i];
+        }
+
+
+        mapArray = subText.toCharArray();
     }
 
     public Caesar(int key){
@@ -88,32 +95,28 @@ public class Caesar extends MonoAlphaSubstitution{
 
     public static void main(String[] args){
         String type = args[0];
-        int key = Integer.parseInt(args[1]);
+        int key = (Integer.parseInt(args[1]) + 12224);
         String text = args[2];
 
-        //Caesar test = new Caesar(3);
-        //for(int i = 0; i < mapArray.length; i++){
-        //    System.out.print(mapArray[i]);
-        //}
-        Caesar q = new Caesar(3);
-        String testMap = new String(q.mapArray);
-        //System.out.println(testMap);
-        
 
-        MonoAlphaSubstitution c = new MonoAlphaSubstitution(testMap);
-        for(int i = 0; i<c.mapArray.length;i++){
-            System.out.print((char)c.mapArray[i]);
+
+
+        if (type.equals("encrypt")){
+            Caesar q = new Caesar(key);
+            String map = new String(q.mapArray);
+            MonoAlphaSubstitution c = new MonoAlphaSubstitution(map);
+            String outc = c.decrypt(text);
+            System.out.println(outc);
+
         }
-        //MonoAlphaSubstitution c = new Caesar(10);
-        //String test = c.encrypt(text);
-        //System.out.println(test);
-
-    
+        else if (type.equals("decrypt")){
+            Caesar q = new Caesar(key);
+            String map = new String(q.mapArray);
+            MonoAlphaSubstitution c = new MonoAlphaSubstitution(map);
+            String outc = c.encrypt(text);
+            System.out.println(outc);
+        }        
     }
-
-
-
-
 
 }
 
