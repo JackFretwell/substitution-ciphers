@@ -59,12 +59,12 @@ public class MonoAlphaSubstitution extends Substitution{
         MonoAlphaSubstitution m = new MonoAlphaSubstitution(key);
 
         if (type.equals("encrypt")){
-            String outc = m.decrypt(text);
+            String outc = m.encrypt(text);
             System.out.println(outc);
 
         }
         else if (type.equals("decrypt")){
-            String outc = m.encrypt(text);
+            String outc = m.decrypt(text);
             System.out.println(outc);
         }
     }
