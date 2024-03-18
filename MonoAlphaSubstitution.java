@@ -14,8 +14,8 @@ public class MonoAlphaSubstitution extends Substitution{
             boolean found = false;
 
             for(int j = 0; j < sArray.length; j++){
-                if((char)i == sArray[j] && j%2 == 1){
-                    mapArray[i] = sArray[j-1];
+                if((char)i == sArray[j] && j%2 == 0){
+                    mapArray[i] = sArray[j+1];
                     found = true;
                 }
             }

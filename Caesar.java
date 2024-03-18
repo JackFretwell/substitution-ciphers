@@ -97,7 +97,7 @@ public class Caesar extends MonoAlphaSubstitution{
     public String decrypt(String text){
         String map = new String(mapArray);
         MonoAlphaSubstitution m = new MonoAlphaSubstitution(map);
-        String outc = m.encrypt(text);
+        String outc = m.decrypt(text);
         return outc;
 
     }
@@ -105,7 +105,7 @@ public class Caesar extends MonoAlphaSubstitution{
     public String encrypt(String text){
         String map = new String(mapArray);
         MonoAlphaSubstitution m = new MonoAlphaSubstitution(map);
-        String outc = m.decrypt(text);
+        String outc = m.encrypt(text);
         return outc;
 
     }
@@ -114,7 +114,7 @@ public class Caesar extends MonoAlphaSubstitution{
     // STILL NEED TO IMPLEMENT PARAMETER ERROR MESSAGES.
     public static void main(String[] args){
         String type = args[0];
-        int shift = (Integer.parseInt(args[1]));
+        shift = (Integer.parseInt(args[1]));
         String text = args[2];
 
 

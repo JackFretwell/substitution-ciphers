@@ -1,17 +1,8 @@
 public class Vigenere extends Substitution {
-    static String key;
-    static String text;
+    static String key = "";
+    static String text = "";
     static Caesar[] shiftArray;
     static int count = 0;
-
-
-    public static void setText(String a){
-        text = a;
-    }
-
-    public static void setKey(String b){
-        key = b;
-    }
 
     public static void setCount(int c){
         count = c;
@@ -30,7 +21,6 @@ public class Vigenere extends Substitution {
             int shift = keyArray[i] - 'A';
             Caesar c = new Caesar(shift);
             shiftArray[i] = c;
-
         }
 
     }
@@ -42,7 +32,7 @@ public class Vigenere extends Substitution {
             }
             String map = new String(shiftArray[count].mapArray);
             MonoAlphaSubstitution m = new MonoAlphaSubstitution(map);
-            a = m.decrypt(c);
+            a = m.encrypt(c);
             setCount((count + 1));
             return a;
 
@@ -58,7 +48,7 @@ public class Vigenere extends Substitution {
             }
             String map = new String(shiftArray[count].mapArray);
             MonoAlphaSubstitution m = new MonoAlphaSubstitution(map);
-            a = m.encrypt(c);
+            a = m.decrypt(c);
             setCount((count + 1));
             return a;
 
@@ -67,17 +57,17 @@ public class Vigenere extends Substitution {
 
     public static void main(String[] args){
         String type = args[0];
-        String key = args[1];
-        String text = args[2];
-        setKey(key);
-        setText(text);
-        Vigenere v = new Vigenere(key);
+        key = args[1];
+        text = args[2];
 
 
         if(type.equals("encrypt")){
+            Vigenere v = new Vigenere(key);
             System.out.println(v.encrypt(text));
         }
         if(type.equals("decrypt")){
+            Vigenere v = new Vigenere(key);
+
             System.out.println(v.decrypt(text));
         }
 
