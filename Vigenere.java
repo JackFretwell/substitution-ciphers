@@ -17,14 +17,12 @@ public class Vigenere extends Substitution {
         count = c;
     }
 
-    //For Vigenere, I would recommend (but not require) that you use an attribute of type Caesar[] to keep around several Caesar objects.
     public Vigenere(){
         shiftArray = new Caesar[1];
         Caesar c = new Caesar(0);
         shiftArray[0] = c;
      }
 
-    //For Vigenere, I would recommend (but not require) that you use an attribute of type Caesar[] to keep around several Caesar objects.
     public Vigenere(String key){
         char[] keyArray = key.toCharArray();
         shiftArray = new Caesar[key.length()];
@@ -73,13 +71,13 @@ public class Vigenere extends Substitution {
         String text = args[2];
         setKey(key);
         setText(text);
+        Vigenere v = new Vigenere(key);
+
 
         if(type.equals("encrypt")){
-            Vigenere v = new Vigenere(key);
             System.out.println(v.encrypt(text));
         }
         if(type.equals("decrypt")){
-            Vigenere v = new Vigenere(key);
             System.out.println(v.decrypt(text));
         }
 
