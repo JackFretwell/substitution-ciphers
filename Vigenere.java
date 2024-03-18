@@ -38,8 +38,23 @@ public class Vigenere extends Substitution {
     }
 
     public char encrypt(char c){
-        char a = 'a';
-        for(int i = 0; i < text.length(); i++){
+        char a = 'A';
+            if (count == key.length()){
+                count = 0;
+            }
+            String map = new String(shiftArray[count].mapArray);
+            MonoAlphaSubstitution m = new MonoAlphaSubstitution(map);
+            a = m.decrypt(c);
+            setCount((count + 1));
+            return a;
+
+        }
+
+    
+    
+
+    public char decrypt(char c){
+        char a = 'A';
             if (count == key.length()){
                 count = 0;
             }
@@ -47,24 +62,9 @@ public class Vigenere extends Substitution {
             MonoAlphaSubstitution m = new MonoAlphaSubstitution(map);
             a = m.encrypt(c);
             setCount((count + 1));
-        }
-        return a;
+            return a;
 
-    }
-
-    public char decrypt(char c){
-        count += 1;
-        char a = 'a';
-        if (count == key.length()){
-            count = 0;
-            }
-        String map = new String(shiftArray[count].mapArray);
-        MonoAlphaSubstitution m = new MonoAlphaSubstitution(map);
-        a = m.decrypt(c);
-        
-        return a;
         }
-        
     
 
     public static void main(String[] args){
@@ -82,5 +82,7 @@ public class Vigenere extends Substitution {
             Vigenere v = new Vigenere(key);
             System.out.println(v.decrypt(text));
         }
+
+        
     }
 }
