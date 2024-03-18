@@ -111,24 +111,40 @@ public class Caesar extends MonoAlphaSubstitution{
     }
     
 
-    // STILL NEED TO IMPLEMENT PARAMETER ERROR MESSAGES.
     public static void main(String[] args){
-        String type = args[0];
-        shift = (Integer.parseInt(args[1]));
-        String text = args[2];
-
-
-        if (type.equals("encrypt")){
-                Caesar q = new Caesar(shift);
-                System.out.println(q.encrypt(text));
+        
+        int argsLength = args.length;
+       
+        if(argsLength > 3){
+            System.out.println("Too many parameters!");
+            System.out.println("Usage: java Caesar encrypt key \"cipher text\"");
 
         }
-        else if (type.equals("decrypt")){
-                Caesar q = new Caesar(shift);
-                System.out.println(q.decrypt(text));
-        }        
+        else if (argsLength < 3){
+            System.out.println("Too few parameters!");
+            System.out.println("Usage: java Caesar encrypt key \"cipher text\"");
+        }
+        else{
+            String type = args[0];
+            shift = (Integer.parseInt(args[1]));
+            String text = args[2];
+
+            if (type.equals("encrypt")){
+                    Caesar q = new Caesar(shift);
+                    System.out.println(q.encrypt(text));
+
+            }
+            else if (type.equals("decrypt")){
+                    Caesar q = new Caesar(shift);
+                    System.out.println(q.decrypt(text));
+            }
+            else{
+                System.out.println("The first parameter must be \"encrypt\" or \"decrypt\"!");
+                System.out.println("Usage: java Caesar encrypt key \"cipher text\"");
+            }        
     }
 
+}
 }
 
 

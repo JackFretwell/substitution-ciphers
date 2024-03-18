@@ -51,25 +51,42 @@ public class MonoAlphaSubstitution extends Substitution{
         }    
 
 
-    // STILL NEED TO IMPLEMENT PARAMETER ERROR MESSAGES.
     public static void main(String[] args){
-        String type = args[0];
-        String key = args[1];
-        String text = args[2];
-        MonoAlphaSubstitution m = new MonoAlphaSubstitution(key);
+        
+        int argsLength = args.length;
 
-        if (type.equals("encrypt")){
-            String outc = m.encrypt(text);
-            System.out.println(outc);
+        if(argsLength > 3){
+            System.out.println("Too many parameters!");
+            System.out.println("Usage: java MonoAlphaSubstitution encrypt key \"cipher text\"");
 
         }
-        else if (type.equals("decrypt")){
-            String outc = m.decrypt(text);
-            System.out.println(outc);
+        else if (argsLength < 3){
+            System.out.println("Too few parameters!");
+            System.out.println("Usage: java MonoAlphaSubstitution encrypt key \"cipher text\"");
         }
-    }
+        else{
+            String type = args[0];
+            String key = args[1];
+            String text = args[2];
+            MonoAlphaSubstitution m = new MonoAlphaSubstitution(key);
+        
+            if (type.equals("encrypt")){
+                String outc = m.encrypt(text);
+                System.out.println(outc);
+
+            }
+            else if (type.equals("decrypt")){
+                String outc = m.decrypt(text);
+                System.out.println(outc);
+            }
+            else{
+                System.out.println("The first parameter must be \"encrypt\" or \"decrypt\"!");
+                System.out.println("Usage: java MonoAlphaSubstitution encrypt key \"cipher text\"");
+            }        
+        }
     
     }
+}
 
 
     

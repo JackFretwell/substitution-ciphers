@@ -18,7 +18,7 @@ public class Vigenere extends Substitution {
         char[] keyArray = key.toCharArray();
         shiftArray = new Caesar[key.length()];
         for(int i = 0; i < key.length(); i++){
-            int shift = keyArray[i] - 'A';
+            int shift = (keyArray[i] - 'A') - 12224;
             Caesar c = new Caesar(shift);
             shiftArray[i] = c;
         }
@@ -27,7 +27,8 @@ public class Vigenere extends Substitution {
 
     public char encrypt(char c){
         char a = 'A';
-            if (count == key.length()){
+
+            if (count > key.length()){
                 count = 0;
             }
             String map = new String(shiftArray[count].mapArray);
@@ -43,7 +44,7 @@ public class Vigenere extends Substitution {
 
     public char decrypt(char c){
         char a = 'A';
-            if (count == key.length()){
+            if (count > key.length()){
                 count = 0;
             }
             String map = new String(shiftArray[count].mapArray);
@@ -56,21 +57,36 @@ public class Vigenere extends Substitution {
     
 
     public static void main(String[] args){
-        String type = args[0];
-        key = args[1];
-        text = args[2];
 
+        int argsLength = args.length;
 
-        if(type.equals("encrypt")){
-            Vigenere v = new Vigenere(key);
-            System.out.println(v.encrypt(text));
+        if(argsLength > 3){
+            System.out.println("Too many parameters!");
+            System.out.println("Usage: java Vigenere encrypt key \"cipher text\"");
+
         }
-        if(type.equals("decrypt")){
-            Vigenere v = new Vigenere(key);
-
-            System.out.println(v.decrypt(text));
+        else if (argsLength < 3){
+            System.out.println("Too few parameters!");
+            System.out.println("Usage: java Vigenere encrypt key \"cipher text\"");
         }
+        else{
+            String type = args[0];
+            key = args[1];
+            text = args[2];
+            
+            if(type.equals("encrypt")){
+                Vigenere v = new Vigenere(key);
+                System.out.println(v.encrypt(text));
+            }
+            else if(type.equals("decrypt")){
+                Vigenere v = new Vigenere(key);
+                System.out.println(v.decrypt(text));
+            }
+            else{
+                System.out.println("The first parameter must be \"encrypt\" or \"decrypt\"!");
+                System.out.println("Usage: java Vigenere encrypt key \"cipher text\"");
+            }
 
-        
+        }
     }
 }
