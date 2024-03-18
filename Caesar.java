@@ -3,7 +3,7 @@ public class Caesar extends MonoAlphaSubstitution{
     private int shift;
     char[] alphabet = "abcdefghijklmnopqrstuvwxyz".toCharArray();
     char[] upperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".toCharArray();
-    static char[] mapArray = new char[100];
+    char[] mapArray = new char[100];
 
     public Caesar(){
         String subText = "";
