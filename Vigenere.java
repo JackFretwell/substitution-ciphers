@@ -5,7 +5,7 @@ public class Vigenere extends Substitution {
     static int count = 0;
     static int keyLength;
 
-    
+
     public Vigenere(){
         shiftArray = new Caesar[1];
         Caesar c = new Caesar(-12224);
@@ -41,8 +41,6 @@ public class Vigenere extends Substitution {
 
         }
 
-    
-    
 
     public char decrypt(char c){
         char a = 'A';
