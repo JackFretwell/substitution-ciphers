@@ -6,12 +6,68 @@ public class Caesar extends MonoAlphaSubstitution{
     char[] mapArray = new char[100];
 
     public Caesar(){
+        Hashtable<Character, Character> mapped = new Hashtable<>();
         String subText = "";
+
+            mapped.put('A','A');
+            mapped.put('B','B');
+            mapped.put('C','C');
+            mapped.put('D','D');
+            mapped.put('E','E');
+            mapped.put('F','F');
+            mapped.put('G','G');
+            mapped.put('H','H');
+            mapped.put('I','I');
+            mapped.put('J','J');
+            mapped.put('K','K');
+            mapped.put('L','L');
+            mapped.put('M','M');
+            mapped.put('N','N');
+            mapped.put('O','O');
+            mapped.put('P','P');
+            mapped.put('Q','Q');
+            mapped.put('R','R');
+            mapped.put('S','S');
+            mapped.put('T','T');
+            mapped.put('U','U');
+            mapped.put('V','V');
+            mapped.put('W','W');
+            mapped.put('X','X');
+            mapped.put('Y','Y');
+            mapped.put('Z','Z');
+
+            mapped.put('a','a');
+            mapped.put('b','b');
+            mapped.put('c','c');
+            mapped.put('d','d');
+            mapped.put('e','e');
+            mapped.put('f','f');
+            mapped.put('g','g');
+            mapped.put('h','h');
+            mapped.put('i','i');
+            mapped.put('j','j');
+            mapped.put('k','k');
+            mapped.put('l','l');
+            mapped.put('m','m');
+            mapped.put('n','n');
+            mapped.put('o','o');
+            mapped.put('p','p');
+            mapped.put('q','q');
+            mapped.put('r','r');
+            mapped.put('s','s');
+            mapped.put('t','t');
+            mapped.put('u','u');
+            mapped.put('v','v');
+            mapped.put('w','w');
+            mapped.put('x','x');
+            mapped.put('y','y');
+            mapped.put('z','z');
+
         for(int i = 0; i <26; i++){
-            subText = subText + alphabet[i];
+            subText = subText + alphabet[i] + mapped.get(alphabet[i]);
         }
         for(int i = 0; i < 26; i++){
-            subText = subText + upperCase[i];
+            subText = subText + upperCase[i] + mapped.get(upperCase[i]);
         }
 
 
@@ -49,10 +105,6 @@ public class Caesar extends MonoAlphaSubstitution{
             mapped.put('X',Character.toUpperCase(upperCase[(23 + shift) %26]));
             mapped.put('Y',Character.toUpperCase(upperCase[(24 + shift) %26]));
             mapped.put('Z',Character.toUpperCase(upperCase[(25 + shift) %26]));
-
-
-
-
 
             mapped.put('a',alphabet[(0 + shift) %26]);
             mapped.put('b',alphabet[(1 + shift) %26]);
@@ -114,7 +166,7 @@ public class Caesar extends MonoAlphaSubstitution{
     public static void main(String[] args){
         
         int argsLength = args.length;
-       
+
         if(argsLength > 3){
             System.out.println("Too many parameters!");
             System.out.println("Usage: java Caesar encrypt key \"cipher text\"");

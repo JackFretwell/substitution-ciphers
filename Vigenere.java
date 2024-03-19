@@ -3,21 +3,24 @@ public class Vigenere extends Substitution {
     static String text = "";
     static Caesar[] shiftArray;
     static int count = 0;
+    static int keyLength;
 
     public static void setCount(int c){
         count = c;
     }
 
+
     public Vigenere(){
         shiftArray = new Caesar[1];
-        Caesar c = new Caesar(0);
+        Caesar c = new Caesar(-12224);
         shiftArray[0] = c;
      }
 
     public Vigenere(String key){
+        keyLength = key.length();
         char[] keyArray = key.toCharArray();
-        shiftArray = new Caesar[key.length()];
-        for(int i = 0; i < key.length(); i++){
+        shiftArray = new Caesar[keyLength];
+        for(int i = 0; i < keyLength; i++){
             int shift = (keyArray[i] - 'A') - 12224;
             Caesar c = new Caesar(shift);
             shiftArray[i] = c;
@@ -27,8 +30,7 @@ public class Vigenere extends Substitution {
 
     public char encrypt(char c){
         char a = 'A';
-
-            if (count > key.length()){
+            if (count >= keyLength){
                 count = 0;
             }
             String map = new String(shiftArray[count].mapArray);
@@ -44,7 +46,7 @@ public class Vigenere extends Substitution {
 
     public char decrypt(char c){
         char a = 'A';
-            if (count > key.length()){
+            if (count >= keyLength){
                 count = 0;
             }
             String map = new String(shiftArray[count].mapArray);
