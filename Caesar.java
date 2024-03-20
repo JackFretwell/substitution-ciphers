@@ -1,9 +1,26 @@
+/** 
+ * 
+ * @author Jack Fretwell
+ * @version 1.0
+ */
+ 
 import java.util.Hashtable;
+
 public class Caesar extends MonoAlphaSubstitution{
+
+    /**
+     * Defines a variable named shift which stores the input shift value, and three char arrays, two that represent the lower and uppercase alphabet, and an empty array that will store shifted alphabet in a format useable by the MonoAlphaSubstitution class.
+     */
+
     private static int shift;
     char[] alphabet = "abcdefghijklmnopqrstuvwxyz".toCharArray();
     char[] upperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".toCharArray();
     char[] mapArray = new char[100];
+
+    /**
+     * The default Caesar constructor maps each character to itself by using a hashtable. It will then create an array that can be interpreted by the MonoAlphaSubstitution class, effectively storing double of each character. This leads to characters being returned
+     * as they were inputted, as no shift was entered by the user.
+     */
 
     public Caesar(){
         Hashtable<Character, Character> mapped = new Hashtable<>();
@@ -73,6 +90,16 @@ public class Caesar extends MonoAlphaSubstitution{
 
         mapArray = subText.toCharArray();
     }
+
+    /**
+     * Takes an input shift, which will represent the integer that the characters are to be shifted by. It then uses a hashtable to map each character to it's character plus the shift. Mod 26 is used to ensure the shift wraps back around if the new character value
+     * is greater than 26. 
+     * 
+     * It stores these mappings into an array where each letter of the alphabet is followed by it's newly mapped character. 
+     * 
+     * @param shift the int that the characters are to be shifted by.
+     * 
+     */
 
     public Caesar(int shift){
         String subText = "";
@@ -145,6 +172,13 @@ public class Caesar extends MonoAlphaSubstitution{
 
     }
 
+    /**
+     * Decrypt first creates a new string by casting mapArray to a string, as a reminder mapArray contains the shifted alphabet. Using this string it creates a new MonoAlphaSubstitution object, and then calls Substitutions decrypt method on to that object. The text that needs
+     * decrypting is used as the input. Once the text has been decrypted it is returned from the method.
+     * 
+     * @param text the String that is to be decrypted.
+     * @return outc the decrypted String.
+     */
 
     public String decrypt(String text){
         String map = new String(mapArray);
@@ -154,6 +188,14 @@ public class Caesar extends MonoAlphaSubstitution{
 
     }
 
+    /**
+     * Encrypt first creates a new string by casting mapArray to a string, as a reminder mapArray contains the shifted alphabet. Using this string it creates a new MonoAlphaSubstitution object, and then calls Substitutions encrypt method on to that object. The text that needs
+     * encrypting is used as the input. Once the text has been encrypted it is returned from the method.
+     * 
+     * @param text the String that is to be encrypted.
+     * @return outc the encrypted String.
+     */
+
     public String encrypt(String text){
         String map = new String(mapArray);
         MonoAlphaSubstitution m = new MonoAlphaSubstitution(map);
@@ -162,6 +204,17 @@ public class Caesar extends MonoAlphaSubstitution{
 
     }
     
+    /**
+     * main first checks the length of the arguments entered at the command line. If this is greater than 3 it will return an error message to the user, if it's less than 3 it will return an error message, if it's exactly 3 in length it will continue.
+     * 
+     * The three command line arguments are stored in to variables, and an if statement is used to check whether "encrypt" or "decrypt" was entered as the type. If neither is the case, an error will be returned.
+     * 
+     * For both encrypt and decrypt a new Caesar object is created, using the integer shift as a parameter, which will create a character mapping seen in the constructors above.
+     * 
+     * Finally Caesar's encrypt/decrypt method is called on the Caesar object with the text to be deciphered/encrypted used as input.
+     * 
+     * @param args represents the three command line arguments, encrypt/decrypt, the number for the characters to be shifted by, and the text to be manipulated.
+     */
 
     public static void main(String[] args){
         
